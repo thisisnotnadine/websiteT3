@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'timesnewnewroman';
+  src: url('./fonts/Timesnewnewroman.woff2') format('woff2');
+  font-weight: 100 900; /* Range of weights */
+  font-style: normal; /* Typically 'normal' for variable fonts */
+}
+
+@font-face {
+  font-family: 'timesnewnewroman-copy';
+  src: url('./fonts/Timesnewnewroman copy.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'timesnewnewroman3';
+  src: url('./fonts/Timesnewnewroman3.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Barong';
+  src: url('fonts/barong.ttf') format('ttf'); /* Path to your font file */
+  
+}
+body {
+  font-family: 'timesnewnewroman', serif; /* Initial font */
+  line-height: 1.6;
+  margin: 0;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+  font-size: 20px;
+  transition: font-family 0.5s ease, opacity 1s ease; /* Smooth transition for font and opacity */
+}
+
+.text-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+p, blockquote { /* Apply styles to both p and blockquote */
+  margin-bottom: 1.5em;
+}
+
+/* Blockquote specific styling */
+blockquote {
+  margin-left: 20px;
+  font-style: italic;
+  color: #555;
+}
+/* Floating characters styles */
+#floating-characters {
+  position: absolute;
+  pointer-events: none; /* Prevent interaction with floating characters */
+}
+
+.character {
+  position: absolute;
+  font-family: 'Barong';
+  font-size: 24px; /* Adjust size as needed */
+  animation: float 5s infinite; /* Floating animation */
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px); /* Adjust the floating height */
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+
+#floating-characters {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.flying-letter {
+  position: absolute;
+  font-family: 'Barong';
+  color: white; /* Adjust color for visibility */
+  opacity: 0.8; /* Slightly transparent */
+  white-space: nowrap; /* Prevent line breaks */
+}

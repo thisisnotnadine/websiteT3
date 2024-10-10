@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        @font-face {
+            font-family: 'Barong';
+            src: url('fonts/Barong.woff2') format('woff2'); /* Path to your font file */
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0; /* Optional: set a background color */
+        }
+        .content {
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeIn 30s forwards; /* Slow fade-in animation (10 seconds) */
+            font-size: 1.2em;
+            transition: opacity 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add a glitch effect for Barong font */
+        .barong-glitch {
+            font-family: 'Barong';
+            font-size: 1.5em;
+            transition: font-size 0.2s ease-in-out;
+        }
+
+        /* Fade out effect for the original content */
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content" id="glitchText">
+        <p id="textContent">The loss of the Abakada, the original Filipino alphabet, marks a cultural erosion that goes beyond language. The alphabet was not just a means of communication; it was interwoven with the artistry of Filipino textiles, within the threads of barong tagalog and filipinanas. These textiles carry the stories and values of our ancestors, crafted by women whose skills have long been undervalued. In an era where colonial narratives have overshadowed the contributions of women, it is crucial to recognize their pivotal role in preserving both language and craft.</p>
+    </div>
+
+    <script>
+        const textElement = document.getElementById('textContent');
+        const originalText = textElement.innerHTML.split('');
+        const glitchFont = 'barong-glitch'; // Class for glitch effect
+        
+        function getRandomIndexes(length, count) {
+            const indexes = new Set();
+            while (indexes.size < count) {
+                indexes.add(Math.floor(Math.random() * length));
+            }
+            return Array.from(indexes);
+        }
+
+        function applyGlitch() {
+            const randomIndexes = getRandomIndexes(originalText.length, 30); // Change 20 letters at random
+            const newHtml = originalText.map((letter, index) => {
+                if (randomIndexes.includes(index)) {
+                    return `<span class="${glitchFont}">${letter}</span>`;
+                }
+                return letter;
+            }).join('');
+            textElement.innerHTML = newHtml;
+        }
+
+        // Apply glitch every 1 second (slow glitch)
+        setInterval(applyGlitch, 3000);
+
+        // Fade in the text slowly after a short delay
+        setTimeout(() => {
+            textElement.style.opacity = 1; // Make the text visible
+        }, 2000); // Delay for 2 seconds to allow fadeIn
+
+        // Redirect to animation.html after 10 seconds
+        setTimeout(() => {
+            // Fade out the original content
+            document.getElementById('glitchText').style.animation = 'fadeOut 2s forwards';
+            
+            // Redirect to animation.html after the fade-out
+            setTimeout(() => {
+                window.location.href = 'animation.html'; // Redirect to animation.html
+            }, 2000); // Wait for the original content to fade out
+        }, 40000); // 10000 milliseconds = 10 seconds
+    </script>
+</body>
+</html>
